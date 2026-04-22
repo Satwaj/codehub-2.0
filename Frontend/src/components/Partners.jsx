@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════
-   SECTION 12: Partners — CENTERED
+   SECTION 12: Partners — Dark Glassmorphic
    ═══════════════════════════════════════════ */
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
@@ -22,36 +22,35 @@ const Partners = () => {
   }, [isVisible]);
 
   return (
-    <SectionWrapper className="section-light relative">
-      <div ref={sectionRef} className="section-inner">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} className="text-center mb-16">
-          <span className="tape-label-blue tape-label mb-8 inline-block">TRUSTED BY</span>
-          <h2 className="heading-display text-4xl md:text-5xl lg:text-6xl mt-8">
-            Brands you'll <span className="italic text-accent-blue">work with</span>
+    <SectionWrapper className="section-dark-2 relative overflow-hidden">
+      <div className="absolute inset-0 bg-grid opacity-[0.03]" />
+
+      <div ref={sectionRef} className="section-inner z-10">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} className="text-center mb-20">
+          <span className="glass-pill mb-6 text-primary border-primary/30">TRUSTED BY</span>
+          <h2 className="heading-display text-5xl md:text-6xl lg:text-7xl mt-4">
+            Brands you'll <span className="italic font-serif text-white/50">work with</span>
           </h2>
         </motion.div>
 
-        <div className="overflow-hidden py-8 relative" onMouseEnter={() => animRef.current?.pause()} onMouseLeave={() => animRef.current?.resume()}>
-          <div ref={marqueeRef} className="flex items-center gap-8 whitespace-nowrap">
+        <div
+          className="overflow-hidden py-4 relative"
+          onMouseEnter={() => animRef.current?.pause()}
+          onMouseLeave={() => animRef.current?.resume()}
+        >
+          <div ref={marqueeRef} className="flex items-center gap-6 whitespace-nowrap">
             {[...PARTNER_BRANDS, ...PARTNER_BRANDS].map((brand, i) => (
-              <div key={i} className="flex-shrink-0 px-12 py-7 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-900 hover:shadow-[3px_3px_0px_rgba(0,0,0,0.1)] transition-all duration-300 group cursor-pointer">
-                <span className="text-xl font-[var(--font-heading)] font-bold text-gray-400 group-hover:text-gray-900 transition-colors">{brand}</span>
+              <div
+                key={i}
+                className="flex-shrink-0 px-8 py-5 rounded-2xl border border-white/10 bg-white/5 hover:border-primary/30 hover:bg-primary/5 transition-all duration-300 group cursor-pointer backdrop-blur-md"
+              >
+                <span className="text-lg font-bold text-white/50 group-hover:text-white transition-colors tracking-widest uppercase">
+                  {brand}
+                </span>
               </div>
             ))}
           </div>
         </div>
-
-        <motion.div initial={{ opacity: 0 }} animate={isVisible ? { opacity: 1 } : {}} transition={{ delay: 0.4 }}
-          className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6"
-        >
-          {PARTNER_BRANDS.map((brand, i) => (
-            <motion.div key={i} initial={{ opacity: 0, scale: 0.9 }} animate={isVisible ? { opacity: 1, scale: 1 } : {}} transition={{ duration: 0.4, delay: 0.5 + i * 0.06 }}
-              className="flex items-center justify-center py-6 px-5 rounded-2xl border-2 border-gray-200 hover:border-primary hover:bg-primary/5 transition-all duration-300 group cursor-pointer"
-            >
-              <span className="text-lg font-bold text-gray-400 group-hover:text-primary transition-colors">{brand}</span>
-            </motion.div>
-          ))}
-        </motion.div>
       </div>
     </SectionWrapper>
   );

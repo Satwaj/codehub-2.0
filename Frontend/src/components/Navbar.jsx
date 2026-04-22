@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════
-   Navbar — Forge-inspired clean nav
+   Navbar — Forge-inspired clean floating nav
    ═══════════════════════════════════════════ */
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -25,23 +25,22 @@ const Navbar = () => {
   return (
     <>
       <motion.nav
-        initial={{ y: -80 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
           scrolled
-            ? 'bg-white/90 backdrop-blur-xl border-b border-gray-200 shadow-sm'
+            ? 'bg-black/80 backdrop-blur-xl border-b border-white/5'
             : 'bg-transparent'
         }`}
       >
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12">
-          <div className="flex items-center justify-between h-20 md:h-24">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
+          <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <a href="#" className="flex items-center gap-1 group">
-              <span className="text-xl md:text-2xl font-[var(--font-heading)] font-black tracking-tight">
-                <span className={scrolled ? 'text-gray-900' : 'text-gray-900'}>the</span>
-                <span className="text-primary ml-1">TFL</span>
-                <span className="text-accent-yellow">CLUB</span>
+              <span className="text-lg md:text-xl font-black tracking-tight">
+                <span className="text-white/80 group-hover:text-white transition-colors">TFL</span>
+                <span className="text-primary">CLUB</span>
               </span>
             </a>
 
@@ -51,23 +50,23 @@ const Navbar = () => {
                 <button
                   key={link.href}
                   onClick={() => handleNavClick(link.href)}
-                  className="text-[15px] font-bold text-gray-600 hover:text-gray-900 transition-colors relative group uppercase tracking-widest"
+                  className="text-[11px] font-semibold text-white/40 hover:text-white transition-colors relative group uppercase tracking-[0.15em]"
                 >
                   {link.label}
-                  <span className="absolute -bottom-1.5 left-0 w-0 h-[2.5px] bg-primary group-hover:w-full transition-all duration-300 rounded-full" />
+                  <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-primary group-hover:w-full transition-all duration-300 rounded-full" />
                 </button>
               ))}
               <button
                 onClick={() => handleNavClick('#cta')}
-                className="btn-primary text-sm px-6 py-3 border-[2.5px]"
+                className="btn-gold text-xs px-5 py-2.5"
               >
-                REQUEST AN INVITE
+                🔥 APPLY NOW
               </button>
             </div>
 
             {/* Mobile toggle */}
-            <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden p-2 text-gray-900">
-              {mobileOpen ? <HiX size={24} /> : <HiMenu size={24} />}
+            <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden p-2 text-white">
+              {mobileOpen ? <HiX size={22} /> : <HiMenu size={22} />}
             </button>
           </div>
         </div>
@@ -80,29 +79,29 @@ const Navbar = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[99] bg-white md:hidden"
+            className="fixed inset-0 z-[99] bg-black/98 backdrop-blur-2xl md:hidden"
           >
-            <div className="flex flex-col items-center justify-center h-full gap-6">
+            <div className="flex flex-col items-center justify-center h-full gap-8">
               {NAV_LINKS.map((link, i) => (
                 <motion.button
                   key={link.href}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.08 }}
+                  transition={{ delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
                   onClick={() => handleNavClick(link.href)}
-                  className="text-2xl font-[var(--font-heading)] font-bold text-gray-900 hover:text-primary transition-colors"
+                  className="text-2xl font-bold text-white/80 hover:text-primary transition-colors tracking-wide"
                 >
                   {link.label}
                 </motion.button>
               ))}
               <motion.button
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: NAV_LINKS.length * 0.08 }}
                 onClick={() => handleNavClick('#cta')}
-                className="btn-primary mt-4"
+                className="btn-gold mt-6"
               >
-                REQUEST AN INVITE
+                🔥 APPLY NOW
               </motion.button>
             </div>
           </motion.div>

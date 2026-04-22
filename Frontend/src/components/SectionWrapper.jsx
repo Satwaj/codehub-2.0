@@ -3,7 +3,7 @@
    ═══════════════════════════════════════════ */
 import { useEffect, useRef } from 'react';
 
-const SectionWrapper = ({ children, className = '', id = '' }) => {
+const SectionWrapper = ({ children, className = '', id = '', style = {} }) => {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const SectionWrapper = ({ children, className = '', id = '' }) => {
       ref={ref}
       id={id}
       className={`section-reveal ${className}`}
-      style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+      style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', ...style }}
     >
       {children}
     </section>
