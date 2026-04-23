@@ -1,5 +1,11 @@
 import React, { useState } from "react";
 import { Rocket, TrendingUp, Crown, Check } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  containerVariants,
+  bounceInVariants,
+  buttonHover,
+} from "../utils/animations";
 
 const WhoCanApply = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -9,7 +15,7 @@ const WhoCanApply = () => {
       title: "Aspiring Traders",
       subtitle: "Beginners",
       icon: Rocket,
-      color: "from-blue-500 to-cyan-500",
+      color: "from-teal-200 to-cyan-100",
       benefits: [
         "Learn from real traders",
         "Avoid beginner mistakes",
@@ -24,7 +30,7 @@ const WhoCanApply = () => {
       title: "Breakeven Traders",
       subtitle: "Looking to Scale",
       icon: TrendingUp,
-      color: "from-purple-500 to-pink-500",
+      color: "from-purple-200 to-pink-100",
       benefits: [
         "You're already doing well — you didn't quit",
         "Trading is a game of risk, probability, and consistency",
@@ -39,7 +45,7 @@ const WhoCanApply = () => {
       title: "Profitable Traders",
       subtitle: "Masters",
       icon: Crown,
-      color: "from-yellow-400 to-orange-500",
+      color: "from-yellow-200 to-orange-100",
       benefits: [
         "You deserve a break",
         "Detox from trading",
@@ -52,85 +58,170 @@ const WhoCanApply = () => {
     },
   ];
 
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50, rotate: -5 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      rotate: 0,
+      transition: {
+        delay: i * 0.15,
+        duration: 0.6,
+        type: "spring",
+        stiffness: 100,
+      },
+    }),
+  };
+
   return (
     <section
       id="apply"
       className="apply-section relative py-20 bg-gradient-to-b from-[#e8ddf7]/50 to-[#ddd1c7]"
     >
       <div className="container">
-        <h2 className="apply-title text-center text-5xl font-bold mb-4 text-[#2a2a2a]">
+        <motion.h2
+          className="apply-title text-center text-5xl font-bold mb-4 text-[#2a2a2a]"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           Who Can <span className="text-[#8b6f47]">Apply?</span>
-        </h2>
-        <p className="text-center text-[#3a3a3a] text-lg mb-16 max-w-2xl mx-auto">
+        </motion.h2>
+        <motion.p
+          className="text-center text-[#3a3a3a] text-lg mb-16 max-w-2xl mx-auto"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
           TFLCLUB welcomes traders at every level. Find your fit.
-        </p>
+        </motion.p>
 
         {/* Persona Cards */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
+        <motion.div
+          className="grid md:grid-cols-3 gap-6 mb-12"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
           {personas.map((persona, i) => (
-            <div
+            <motion.div
               key={i}
               onClick={() => setActiveTab(i)}
-              className={`persona-card cursor-pointer transition-all ${activeTab === i ? "ring-2 ring-yellow-400" : ""}`}
+              className={`persona-card cursor-pointer transition-all ${
+                activeTab === i ? "ring-2 ring-[#8b6f47]" : ""
+              }`}
+              variants={cardVariants}
+              custom={i}
+              whileHover={{ y: -5 }}
             >
-              <div
-                className={`h-full p-8 rounded-2xl bg-gradient-to-br ${persona.color}/20 border-2 ${activeTab === i ? "border-yellow-400" : "border-" + persona.color.split("-")[1] + "-500/30"} hover:border-yellow-400/50 transition-all hover:shadow-lg hover:shadow-yellow-400/20 group`}
+              <motion.div
+                className={`h-full p-8 rounded-2xl bg-gradient-to-br ${persona.color} border-2 ${
+                  activeTab === i ? "border-[#8b6f47]" : "border-[#d4ccc2]"
+                } hover:border-[#8b6f47]/50 transition-all hover:shadow-lg hover:shadow-[#8b6f47]/10 group`}
+                whileHover={{ boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}
               >
-                <div className="mb-4 group-hover:scale-110 transition-transform">
+                <motion.div
+                  className="mb-4"
+                  whileHover={{ scale: 1.2, rotate: 10 }}
+                >
                   <persona.icon size={48} className="text-gray-700" />
-                </div>
-                <h3 className="text-2xl font-bold text-black-300 mb-1">
+                </motion.div>
+                <h3 className="text-2xl font-bold text-[#2a2a2a] mb-1">
                   {persona.title}
                 </h3>
                 <p className="text-sm text-gray-700 mb-6">{persona.subtitle}</p>
 
                 <div className="space-y-3">
                   {persona.benefits.slice(0, 3).map((benefit, j) => (
-                    <div key={j} className="flex items-start gap-2">
+                    <motion.div
+                      key={j}
+                      className="flex items-start gap-2"
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 + j * 0.05 }}
+                    >
                       <Check
                         size={16}
-                        className="text-yellow-400 mt-1 flex-shrink-0"
+                        className="text-[#8b6f47] mt-1 flex-shrink-0"
                       />
                       <p className="text-sm text-gray-700">{benefit}</p>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
 
-                {activeTab === i && (
-                  <div className="mt-6 pt-6 border-t border-white/10">
-                    {persona.benefits.slice(3).map((benefit, j) => (
-                      <div key={j} className="flex items-start gap-2 mb-3">
-                        <span className="text-light-cyan-blue-400 mt-1">✓</span>
-                        <p className="text-sm text-gray-700">{benefit}</p>
-                      </div>
-                    ))}
-                    <button className="w-full btn btn-primary mt-6">
-                      Apply as {persona.title}
-                    </button>
-                  </div>
-                )}
-              </div>
-            </div>
+                <AnimatePresence>
+                  {activeTab === i && (
+                    <motion.div
+                      className="mt-6 pt-6 border-t border-white/10"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {persona.benefits.slice(3).map((benefit, j) => (
+                        <motion.div
+                          key={j}
+                          className="flex items-start gap-2 mb-3"
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: j * 0.05 }}
+                        >
+                          <span className="text-yellow-400 mt-1">✓</span>
+                          <p className="text-sm text-gray-700">{benefit}</p>
+                        </motion.div>
+                      ))}
+                      <motion.button
+                        className="w-full btn btn-primary mt-6"
+                        {...buttonHover}
+                      >
+                        Apply as {persona.title}
+                      </motion.button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Mobile Expanded View */}
-        {activeTab !== null && (
-          <div className="md:hidden mt-8 p-6 bg-gradient-to-br from-purple-500/20 to-blue-500/20 border border-purple-500/30 rounded-2xl">
-            <h3 className="text-xl font-bold text-black-300 mb-4">
-              {personas[activeTab].title}
-            </h3>
-            <div className="space-y-3 mb-6">
-              {personas[activeTab].benefits.map((benefit, j) => (
-                <div key={j} className="flex items-start gap-2">
-                  <span className="text-yellow-400">✓</span>
-                  <p className="text-sm text-gray-700">{benefit}</p>
-                </div>
-              ))}
-            </div>
-            <button className="w-full btn btn-primary">Apply Now</button>
-          </div>
-        )}
+        <AnimatePresence>
+          {activeTab !== null && (
+            <motion.div
+              className="md:hidden mt-8 p-6 bg-gradient-to-br from-purple-500/20 to-blue-500/20 border border-purple-500/30 rounded-2xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+            >
+              <h3 className="text-xl font-bold text-[#2a2a2a] mb-4">
+                {personas[activeTab].title}
+              </h3>
+              <div className="space-y-3 mb-6">
+                {personas[activeTab].benefits.map((benefit, j) => (
+                  <motion.div
+                    key={j}
+                    className="flex items-start gap-2"
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: j * 0.05 }}
+                  >
+                    <span className="text-yellow-400">✓</span>
+                    <p className="text-sm text-gray-700">{benefit}</p>
+                  </motion.div>
+                ))}
+              </div>
+              <motion.button
+                className="w-full btn btn-primary"
+                {...buttonHover}
+              >
+                Apply Now
+              </motion.button>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );

@@ -42,7 +42,7 @@ const ProfitableTraderJourneys = () => {
                     </span>
                   )}
                 </div>
-                <span className="text-xl font-bold text-yellow-400">
+                <span className="text-xl font-bold text-[#8b6f47]">
                   ${trader.payout.toLocaleString()}+
                 </span>
               </div>
@@ -81,7 +81,7 @@ const ProfitableTraderJourneys = () => {
               className="p-4 bg-white/5 border border-white/10 rounded-lg text-center hover:border-yellow-400/30 transition-all"
             >
               <p className="text-gray-400 text-sm mb-1">{stat.label}</p>
-              <p className="text-2xl font-bold text-yellow-400">{stat.value}</p>
+              <p className="text-2xl font-bold text-[#8b6f47]">{stat.value}</p>
             </div>
           ))}
         </div>

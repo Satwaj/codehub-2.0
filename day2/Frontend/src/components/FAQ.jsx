@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { containerVariants, buttonHover } from "../utils/animations";
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(null);
@@ -46,60 +48,114 @@ const FAQ = () => {
     },
   ];
 
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.08,
+        duration: 0.5,
+      },
+    }),
+  };
+
   return (
     <section
       id="faq"
       className="faq-section relative py-20 bg-gradient-to-b from-[#e8ddf7]/50 to-[#ddd1c7]"
     >
       <div className="container max-w-3xl">
-        <h2 className="faq-title text-center text-5xl font-bold mb-4 text-[#2a2a2a]">
+        <motion.h2
+          className="faq-title text-center text-5xl font-bold mb-4 text-[#2a2a2a]"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           Frequently Asked <span className="text-[#8b6f47]">Questions</span>
-        </h2>
-        <p className="text-center text-gray-400 text-lg mb-16">
+        </motion.h2>
+        <motion.p
+          className="text-center text-[#3a3a3a] text-lg mb-16"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
           Get answers to common questions
-        </p>
+        </motion.p>
 
         {/* FAQ Items */}
-        <div className="space-y-3">
+        <motion.div
+          className="space-y-3"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
           {faqs.map((faq, i) => (
-            <div key={i} className="faq-item">
-              <button
+            <motion.div
+              key={i}
+              className="faq-item"
+              variants={itemVariants}
+              custom={i}
+            >
+              <motion.button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
                 className="w-full p-6 rounded-lg bg-white/5 border border-white/10 hover:border-yellow-400/30 transition-all text-left group"
+                whileHover={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
               >
                 <div className="flex items-center justify-between">
-                  <h3 className="font-bold text-lg text-white group-hover:text-yellow-400 transition-colors">
+                  <h3 className="font-bold text-lg text-[#2a2a2a] group-hover:text-[#8b6f47] transition-colors">
                     {faq.question}
                   </h3>
-                  <div
-                    className={`w-6 h-6 flex items-center justify-center text-yellow-400 transition-transform ${openIndex === i ? "rotate-45" : ""}`}
+                  <motion.div
+                    className="w-6 h-6 flex items-center justify-center text-[#8b6f47]"
+                    animate={{ rotate: openIndex === i ? 45 : 0 }}
+                    transition={{ duration: 0.3 }}
                   >
                     +
-                  </div>
+                  </motion.div>
                 </div>
 
-                {openIndex === i && (
-                  <div className="mt-4 pt-4 border-t border-white/10">
-                    <p className="text-gray-400 leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </div>
-                )}
-              </button>
-            </div>
+                <AnimatePresence>
+                  {openIndex === i && (
+                    <motion.div
+                      className="mt-4 pt-4 border-t border-white/10"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <p className="text-[#3a3a3a] leading-relaxed">
+                        {faq.answer}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.button>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* CTA */}
-        <div className="mt-16 p-8 bg-gradient-to-r from-purple-500/20 to-blue-500/20 border border-purple-500/30 rounded-2xl text-center">
-          <h3 className="text-2xl font-bold text-white mb-3">
+        <motion.div
+          className="mt-16 p-8 bg-gradient-to-r from-purple-500/20 to-blue-500/20 border border-purple-500/30 rounded-2xl text-center"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h3 className="text-2xl font-bold text-[#2a2a2a] mb-3">
             Didn't find your answer?
           </h3>
-          <p className="text-gray-300 mb-6">
+          <p className="text-[#3a3a3a] mb-6">
             Reach out to our team for personalized guidance
           </p>
-          <button className="btn btn-primary">Book a Call</button>
-        </div>
+          <motion.button className="btn btn-primary" {...buttonHover}>
+            Book a Call
+          </motion.button>
+        </motion.div>
       </div>
     </section>
   );

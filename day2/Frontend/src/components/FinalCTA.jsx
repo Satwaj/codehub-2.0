@@ -29,7 +29,7 @@ const FinalCTA = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 flex-wrap">
           <div className="final-badges px-6 py-3 bg-yellow-400/20 border border-yellow-400/50 rounded-lg flex items-center gap-2">
             <Flame size={20} style={{ color: "#ca8a04" }} />
-            <p className="text-yellow-400 font-bold">30 Slots Only</p>
+            <p className="text-[#8b6f47] font-bold">30 Slots Only</p>
           </div>
           <div className="final-badges px-6 py-3 bg-blue-400/20 border border-blue-400/50 rounded-lg flex items-center gap-2">
             <Zap size={20} style={{ color: "#0ea5e9" }} />
@@ -52,17 +52,17 @@ const FinalCTA = () => {
           <p className="text-gray-400 text-sm mb-2">Next Batch Starts In:</p>
           <div className="flex gap-4 items-center justify-center">
             <div className="text-center">
-              <p className="text-3xl font-bold text-yellow-400">45</p>
+              <p className="text-3xl font-bold text-[#8b6f47]">45</p>
               <p className="text-xs text-gray-500">Days</p>
             </div>
             <span className="text-2xl text-gray-500">:</span>
             <div className="text-center">
-              <p className="text-3xl font-bold text-yellow-400">12</p>
+              <p className="text-3xl font-bold text-[#8b6f47]">12</p>
               <p className="text-xs text-gray-500">Hours</p>
             </div>
             <span className="text-2xl text-gray-500">:</span>
             <div className="text-center">
-              <p className="text-3xl font-bold text-yellow-400">24</p>
+              <p className="text-3xl font-bold text-[#8b6f47]">24</p>
               <p className="text-xs text-gray-500">Minutes</p>
             </div>
           </div>

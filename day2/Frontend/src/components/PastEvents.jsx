@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import {
   BarChart3,
   Handshake,
@@ -7,6 +8,7 @@ import {
   Lightbulb,
   Check,
 } from "lucide-react";
+import { containerVariants } from "../utils/animations";
 
 const PastEvents = () => {
   const seasons = [
@@ -63,26 +65,45 @@ const PastEvents = () => {
         {/* Timeline */}
         <div className="relative">
           {/* Vertical Line */}
-          <div
-            className="timeline-line absolute left-0 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-[#d4af37] via-[#8b6f47] to-[#4a6fa5] transform md:-translate-x-1/2 origin-top scale-y-0"
-            style={{ scaleY: 0 }}
-          ></div>
+          <motion.div
+            className="timeline-line absolute left-0 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-[#d4af37] via-[#8b6f47] to-[#4a6fa5] transform md:-translate-x-1/2 origin-top"
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            transition={{ duration: 1.2 }}
+            viewport={{ once: true, margin: "-100px" }}
+          ></motion.div>
 
           {/* Timeline Items */}
           <div className="space-y-8">
             {seasons.map((season, i) => (
-              <div key={i} className="timeline-item">
+              <motion.div
+                key={i}
+                className="timeline-item"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.05, duration: 0.6 }}
+                viewport={{ once: true, margin: "-100px" }}
+              >
                 <div
                   className={`flex flex-col md:flex-row items-start md:items-center gap-8 ${i % 2 === 0 ? "md:flex-row-reverse" : ""}`}
                 >
                   {/* Content */}
-                  <div className="flex-1 md:text-right">
-                    <div
+                  <motion.div
+                    className="flex-1 md:text-right"
+                    whileHover={{ scale: 1.02 }}
+                  >
+                    <motion.div
                       className={`p-6 rounded-2xl border transition-all ${
                         season.highlight
                           ? "bg-[#d4af37]/20 border-[#8b6f47]/60 hover:shadow-lg hover:shadow-[#8b6f47]/20"
                           : "bg-white/40 border-[#d4ccc2] hover:border-[#8b6f47]/50 hover:bg-white/60"
                       }`}
+                      whileHover={{
+                        y: -5,
+                        boxShadow: season.highlight
+                          ? "0 20px 25px rgba(139, 111, 71, 0.15)"
+                          : "0 10px 20px rgba(0, 0, 0, 0.05)",
+                      }}
                     >
                       <div className="flex flex-col gap-2">
                         <span
@@ -101,56 +122,98 @@ const PastEvents = () => {
                           {season.price}
                         </p>
                       </div>
-                    </div>
-                  </div>
+                    </motion.div>
+                  </motion.div>
 
                   {/* Timeline Dot */}
-                  <div className="hidden md:flex justify-center">
-                    <div
+                  <motion.div
+                    className="hidden md:flex justify-center"
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ delay: i * 0.05 + 0.2, duration: 0.4 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    whileHover={{ scale: 1.3 }}
+                  >
+                    <motion.div
                       className={`w-4 h-4 rounded-full border-4 border-[#ddd1c7] transform scale-100 ${
                         season.highlight
                           ? "bg-[#8b6f47] ring-4 ring-[#8b6f47]/30"
                           : "bg-[#d4af37]"
                       }`}
-                    ></div>
-                  </div>
+                      whileHover={{
+                        boxShadow: "0 0 15px rgba(212, 175, 55, 0.6)",
+                      }}
+                    ></motion.div>
+                  </motion.div>
 
                   {/* Empty Space */}
                   <div className="flex-1 hidden md:block"></div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
 
         {/* Future Plans */}
-        <div className="mt-16 p-8 bg-gradient-to-r from-[#8b6f47]/15 to-[#4a6fa5]/15 border border-[#8b6f47]/30 rounded-2xl text-center">
+        <motion.div
+          className="mt-16 p-8 bg-gradient-to-r from-[#8b6f47]/15 to-[#4a6fa5]/15 border border-[#8b6f47]/30 rounded-2xl text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: "-100px" }}
+          whileHover={{
+            scale: 1.02,
+            boxShadow: "0 10px 30px rgba(139, 111, 71, 0.1)",
+          }}
+        >
           <h3 className="text-2xl font-bold mb-3" style={{ color: "#3a3a3a" }}>
             More Locations Coming Soon
           </h3>
           <p style={{ color: "#3a3a3a" }}>
             International expansion in progress. Stay tuned!
           </p>
-        </div>
+        </motion.div>
 
         {/* What Happened In Past Sessions */}
         <div className="mt-20">
-          <h3
+          <motion.h3
             className="text-4xl font-bold text-center mb-16"
             style={{ color: "#3a3a3a" }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true, margin: "-100px" }}
           >
             What Happened In{" "}
             <span style={{ color: "#8b6f47" }}>Past Sessions</span>
-          </h3>
+          </motion.h3>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <motion.div
+            className="grid md:grid-cols-3 gap-8"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
             {/* Trading Sessions */}
-            <div className="p-8 bg-white/50 border border-[#d4ccc2] rounded-2xl hover:shadow-lg transition-all">
-              <BarChart3
-                size={40}
-                style={{ color: "#8b6f47" }}
-                className="mb-4"
-              />
+            <motion.div
+              className="p-8 bg-white/50 border border-[#d4ccc2] rounded-2xl hover:shadow-lg transition-all"
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+              }}
+              whileHover={{
+                y: -8,
+                boxShadow: "0 20px 40px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              <motion.div whileHover={{ rotate: 10, scale: 1.1 }}>
+                <BarChart3
+                  size={40}
+                  style={{ color: "#8b6f47" }}
+                  className="mb-4"
+                />
+              </motion.div>
               <h4
                 className="text-2xl font-bold mb-4"
                 style={{ color: "#3a3a3a" }}
@@ -161,15 +224,31 @@ const PastEvents = () => {
                 Live market analysis, real-time trading demonstrations, and
                 strategy discussions with profitable traders in action.
               </p>
-            </div>
+            </motion.div>
 
             {/* Networking Events */}
-            <div className="p-8 bg-white/50 border border-[#d4ccc2] rounded-2xl hover:shadow-lg transition-all">
-              <Handshake
-                size={40}
-                style={{ color: "#8b6f47" }}
-                className="mb-4"
-              />
+            <motion.div
+              className="p-8 bg-white/50 border border-[#d4ccc2] rounded-2xl hover:shadow-lg transition-all"
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { delay: 0.1, duration: 0.6 },
+                },
+              }}
+              whileHover={{
+                y: -8,
+                boxShadow: "0 20px 40px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              <motion.div whileHover={{ rotate: 10, scale: 1.1 }}>
+                <Handshake
+                  size={40}
+                  style={{ color: "#8b6f47" }}
+                  className="mb-4"
+                />
+              </motion.div>
               <h4
                 className="text-2xl font-bold mb-4"
                 style={{ color: "#3a3a3a" }}
@@ -180,15 +259,31 @@ const PastEvents = () => {
                 Connect with 30 like-minded traders, mentors, and content
                 creators in an exclusive, intimate setting.
               </p>
-            </div>
+            </motion.div>
 
             {/* Workshops */}
-            <div className="p-8 bg-white/50 border border-[#d4ccc2] rounded-2xl hover:shadow-lg transition-all">
-              <BookOpen
-                size={40}
-                style={{ color: "#8b6f47" }}
-                className="mb-4"
-              />
+            <motion.div
+              className="p-8 bg-white/50 border border-[#d4ccc2] rounded-2xl hover:shadow-lg transition-all"
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { delay: 0.2, duration: 0.6 },
+                },
+              }}
+              whileHover={{
+                y: -8,
+                boxShadow: "0 20px 40px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              <motion.div whileHover={{ rotate: 10, scale: 1.1 }}>
+                <BookOpen
+                  size={40}
+                  style={{ color: "#8b6f47" }}
+                  className="mb-4"
+                />
+              </motion.div>
               <h4
                 className="text-2xl font-bold mb-4"
                 style={{ color: "#3a3a3a" }}
@@ -199,15 +294,31 @@ const PastEvents = () => {
                 In-depth sessions on risk management, psychology, journaling,
                 and market fundamentals from experts.
               </p>
-            </div>
+            </motion.div>
 
             {/* Social Activities */}
-            <div className="p-8 bg-white/50 border border-[#d4ccc2] rounded-2xl hover:shadow-lg transition-all">
-              <Sparkles
-                size={40}
-                style={{ color: "#8b6f47" }}
-                className="mb-4"
-              />
+            <motion.div
+              className="p-8 bg-white/50 border border-[#d4ccc2] rounded-2xl hover:shadow-lg transition-all"
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { delay: 0.3, duration: 0.6 },
+                },
+              }}
+              whileHover={{
+                y: -8,
+                boxShadow: "0 20px 40px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              <motion.div whileHover={{ rotate: 10, scale: 1.1 }}>
+                <Sparkles
+                  size={40}
+                  style={{ color: "#8b6f47" }}
+                  className="mb-4"
+                />
+              </motion.div>
               <h4
                 className="text-2xl font-bold mb-4"
                 style={{ color: "#3a3a3a" }}
@@ -218,15 +329,31 @@ const PastEvents = () => {
                 Adventure sports, group dinners, night markets, and
                 unforgettable memories in stunning locations.
               </p>
-            </div>
+            </motion.div>
 
             {/* Mentorship */}
-            <div className="p-8 bg-white/50 border border-[#d4ccc2] rounded-2xl hover:shadow-lg transition-all">
-              <Lightbulb
-                size={40}
-                style={{ color: "#8b6f47" }}
-                className="mb-4"
-              />
+            <motion.div
+              className="p-8 bg-white/50 border border-[#d4ccc2] rounded-2xl hover:shadow-lg transition-all"
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { delay: 0.4, duration: 0.6 },
+                },
+              }}
+              whileHover={{
+                y: -8,
+                boxShadow: "0 20px 40px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              <motion.div whileHover={{ rotate: 10, scale: 1.1 }}>
+                <Lightbulb
+                  size={40}
+                  style={{ color: "#8b6f47" }}
+                  className="mb-4"
+                />
+              </motion.div>
               <h4
                 className="text-2xl font-bold mb-4"
                 style={{ color: "#3a3a3a" }}
@@ -237,11 +364,31 @@ const PastEvents = () => {
                 Personal guidance from successful traders who have built
                 profitable track records and substantial returns.
               </p>
-            </div>
+            </motion.div>
 
             {/* Accountability */}
-            <div className="p-8 bg-white/50 border border-[#d4ccc2] rounded-2xl hover:shadow-lg transition-all">
-              <Check size={40} style={{ color: "#8b6f47" }} className="mb-4" />
+            <motion.div
+              className="p-8 bg-white/50 border border-[#d4ccc2] rounded-2xl hover:shadow-lg transition-all"
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { delay: 0.5, duration: 0.6 },
+                },
+              }}
+              whileHover={{
+                y: -8,
+                boxShadow: "0 20px 40px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              <motion.div whileHover={{ rotate: 10, scale: 1.1 }}>
+                <Check
+                  size={40}
+                  style={{ color: "#8b6f47" }}
+                  className="mb-4"
+                />
+              </motion.div>
               <h4
                 className="text-2xl font-bold mb-4"
                 style={{ color: "#3a3a3a" }}
@@ -252,34 +399,55 @@ const PastEvents = () => {
                 Form lasting connections with accountability partners to
                 maintain discipline and track progress together.
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
 
         {/* Key Statistics */}
-        <div className="mt-20 grid md:grid-cols-4 gap-6">
+        <motion.div
+          className="mt-20 grid md:grid-cols-4 gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
           {[
             { number: "10", label: "Seasons Completed" },
             { number: "300+", label: "Traders Trained" },
             { number: "5 Days", label: "Intensive Program" },
             { number: "$1M+", label: "In Payouts" },
           ].map((stat, i) => (
-            <div
+            <motion.div
               key={i}
               className="p-8 bg-gradient-to-br from-[#8b6f47]/20 to-[#4a6fa5]/20 border border-[#8b6f47]/40 rounded-xl text-center hover:border-[#8b6f47]/60 transition-all"
+              variants={{
+                hidden: { opacity: 0, scale: 0.8, y: 20 },
+                visible: {
+                  opacity: 1,
+                  scale: 1,
+                  y: 0,
+                  transition: { delay: i * 0.1, duration: 0.6 },
+                },
+              }}
+              whileHover={{
+                scale: 1.08,
+                boxShadow: "0 20px 40px rgba(139, 111, 71, 0.15)",
+                borderColor: "rgba(212, 175, 55, 0.6)",
+              }}
             >
-              <div
+              <motion.div
                 className="text-4xl font-bold mb-2"
                 style={{ color: "#8b6f47" }}
+                whileHover={{ scale: 1.2 }}
               >
                 {stat.number}
-              </div>
+              </motion.div>
               <p className="font-semibold" style={{ color: "#3a3a3a" }}>
                 {stat.label}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
