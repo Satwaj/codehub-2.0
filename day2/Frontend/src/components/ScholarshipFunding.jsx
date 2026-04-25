@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { containerVariants, bounceInVariants } from "../utils/animations";
+import { containerVariants } from "../utils/animations";
 
 const ScholarshipFunding = () => {
   const rewardVariants = {

@@ -1,10 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import {
-  containerVariants,
-  slideInFromBottomVariants,
-  buttonHover,
-} from "../utils/animations";
+import { containerVariants, buttonHover } from "../utils/animations";
 
 const UpcomingEvents = () => {
   const upcomingEvents = [

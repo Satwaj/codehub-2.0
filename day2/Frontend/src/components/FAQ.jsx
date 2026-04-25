@@ -147,7 +147,7 @@ const FAQ = () => {
           viewport={{ once: true }}
         >
           <h3 className="text-2xl font-bold text-[#2a2a2a] mb-3">
-            Didn't find your answer?
+            Didn&apos;t find your answer?
           </h3>
           <p className="text-[#3a3a3a] mb-6">
             Reach out to our team for personalized guidance

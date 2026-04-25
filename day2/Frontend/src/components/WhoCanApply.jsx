@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import { Rocket, TrendingUp, Crown, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  containerVariants,
-  bounceInVariants,
-  buttonHover,
-} from "../utils/animations";
+import { containerVariants, buttonHover } from "../utils/animations";
 
 const WhoCanApply = () => {
   const [activeTab, setActiveTab] = useState(0);

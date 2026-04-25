@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import {
   containerVariants,
   slideInFromLeftVariants,
-  slideInFromRightVariants,
 } from "../utils/animations";
 
 const Purpose = () => {
@@ -52,7 +51,7 @@ const Purpose = () => {
               transition={{ delay: 0.2, duration: 0.6 }}
               viewport={{ once: true }}
             >
-              We can't make you profitable.
+              We can&apos;t make you profitable.
             </motion.h3>
             <motion.p
               className="text-[#3a3a3a] text-lg leading-relaxed mb-8"

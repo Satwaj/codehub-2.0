@@ -11,7 +11,7 @@ import {
   Check,
 } from "lucide-react";
 import { motion } from "framer-motion";
-import { containerVariants, bounceInVariants } from "../utils/animations";
+import { containerVariants } from "../utils/animations";
 
 const Partnerships = () => {
   const partners = [

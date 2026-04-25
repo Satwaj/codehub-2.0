@@ -23,10 +23,10 @@ const IncludedNotIncluded = () => {
     >
       <div className="container">
         <h2 className="included-title text-center text-5xl font-bold mb-4 text-[#2a2a2a]">
-          What's <span className="text-[#8b6f47]">Included?</span>
+          What&apos;s <span className="text-[#8b6f47]">Included?</span>
         </h2>
         <p className="text-center text-[#3a3a3a] text-lg mb-16 max-w-2xl mx-auto">
-          Know exactly what you're getting
+          Know exactly what you&apos;re getting
         </p>
 
         <div className="grid md:grid-cols-2 gap-8">

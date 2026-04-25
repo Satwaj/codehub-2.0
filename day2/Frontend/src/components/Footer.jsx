@@ -1,9 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import {
-  slideInFromBottomVariants,
-  containerVariants,
-} from "../utils/animations";
+import { containerVariants } from "../utils/animations";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

@@ -8,11 +8,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { motion } from "framer-motion";
-import {
-  containerVariants,
-  bounceInVariants,
-  hoverScale,
-} from "../utils/animations";
+import { containerVariants } from "../utils/animations";
 
 const Experience = () => {
   const experiences = [
@@ -127,8 +123,8 @@ const Experience = () => {
           viewport={{ once: true }}
         >
           <p className="text-[#3a3a3a] text-lg italic">
-            "Every day is structured to maximize learning, connections, and
-            consistent progress"
+            &ldquo;Every day is structured to maximize learning, connections,
+            and consistent progress&rdquo;
           </p>
         </motion.div>
       </div>

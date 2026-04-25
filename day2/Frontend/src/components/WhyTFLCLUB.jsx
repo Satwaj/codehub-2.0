@@ -156,8 +156,8 @@ const WhyTFLCLUB = () => {
               })}
 
               {/* Center Circle */}
-              <motion.div
-                className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
+              {/* <motion.div
+                className="absolute left-1/2 top-1/2 transform -translate-x-1/3 -translate-y-1/3 w-10 h-10 rounded-full bg-gradient-to-br from-[#8b6f47] to-[#4a6fa5] flex items-center justify-center shadow-xl shadow-[#8b6f47]/30  "
                 initial={{ scale: 0 }}
                 whileInView={{ scale: 1 }}
                 transition={{ delay: 0.3, duration: 0.6, type: "spring" }}
@@ -168,11 +168,11 @@ const WhyTFLCLUB = () => {
                   whileHover={{ scale: 1.1 }}
                 >
                   <div className="text-center">
-                    <p className="text-2xl font-bold text-white">100%</p>
+                    <p className="text-xs font-bold text-white">100%</p>
                     <p className="text-xs text-white">Invested</p>
                   </div>
                 </motion.div>
-              </motion.div>
+              </motion.div> */}
             </div>
           </motion.div>
         </div>
@@ -190,8 +190,8 @@ const WhyTFLCLUB = () => {
           }}
         >
           <p className="text-lg text-[#3a3a3a] italic">
-            "Not just a bootcamp, but a complete investment in your trading
-            future"
+            &ldquo;Not just a bootcamp, but a complete investment in your
+            trading future&rdquo;
           </p>
         </motion.div>
       </div>

@@ -1,12 +1,7 @@
 import React from "react";
 import { Users, BookOpen, Check, DollarSign } from "lucide-react";
 import { motion } from "framer-motion";
-import {
-  containerVariants,
-  slideInFromLeftVariants,
-  slideInFromRightVariants,
-  bounceInVariants,
-} from "../utils/animations";
+import { containerVariants } from "../utils/animations";
 
 const WhatIsTFLCLUB = () => {
   const benefits = [

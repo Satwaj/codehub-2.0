@@ -2,9 +2,7 @@ import React from "react";
 import { Flame } from "lucide-react";
 import { motion } from "framer-motion";
 import {
-  fadeInVariants,
   slideInFromTopVariants,
-  slideInFromBottomVariants,
   bounceInVariants,
   buttonHover,
   containerVariants,

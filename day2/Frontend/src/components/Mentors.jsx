@@ -5,84 +5,82 @@ import { containerVariants } from "../utils/animations";
 
 const Mentors = () => {
   const [activeTab, setActiveTab] = useState(0);
-
-  const seasons = [
-    {
-      season: "Season 1",
-      title: "Consistency & Payouts",
-      mentors: [
-        {
-          name: "Night Trader Rakesh",
-          specialty: "Night Trading",
-          color: "from-teal-200 to-cyan-100",
-        },
-        {
-          name: "Sneha",
-          specialty: "Risk Management",
-          color: "from-rose-200 to-pink-100",
-        },
-      ],
-    },
-    {
-      season: "Season 2",
-      title: "Risk & Psychology",
-      mentors: [
-        {
-          name: "Parida",
-          specialty: "Psychology",
-          color: "from-orange-200 to-amber-100",
-        },
-        {
-          name: "Prince",
-          specialty: "Risk Analysis",
-          color: "from-emerald-200 to-lime-100",
-        },
-        {
-          name: "Sowmya",
-          specialty: "Trading Systems",
-          color: "from-red-200 to-rose-100",
-        },
-      ],
-    },
-    {
-      season: "Season 3",
-      title: "Scaling & Funding",
-      mentors: [
-        {
-          name: "Rohit Morning Star",
-          specialty: "Morning Sessions",
-          color: "from-yellow-200 to-amber-100",
-        },
-        {
-          name: "Anand Rajan",
-          specialty: "Scaling Strategies",
-          color: "from-violet-200 to-purple-100",
-        },
-      ],
-    },
-    {
-      season: "Season 4",
-      title: "Discipline & Journaling",
-      mentors: [
-        {
-          name: "Himanshu",
-          specialty: "Discipline",
-          color: "from-fuchsia-200 to-pink-100",
-        },
-        {
-          name: "Rishav",
-          specialty: "Journaling",
-          color: "from-cyan-200 to-sky-100",
-        },
-        {
-          name: "Viraj",
-          specialty: "Execution",
-          color: "from-indigo-200 to-blue-100",
-        },
-      ],
-    },
-  ];
-
+const seasons = [
+  {
+    season: "Season 1",
+    title: "Consistency & Payouts",
+    mentors: [
+      {
+        name: "Night Trader Rakesh",
+        specialty: "Night Trading",
+        color: "from-rose-50 to-orange-50",
+      },
+      {
+        name: "Sneha",
+        specialty: "Risk Management",
+        color: "from-pink-50 to-amber-50",
+      },
+    ],
+  },
+  {
+    season: "Season 2",
+    title: "Risk & Psychology",
+    mentors: [
+      {
+        name: "Parida",
+        specialty: "Psychology",
+        color: "from-amber-50 to-yellow-50",
+      },
+      {
+        name: "Prince",
+        specialty: "Risk Analysis",
+        color: "from-orange-50 to-amber-100",
+      },
+      {
+        name: "Sowmya",
+        specialty: "Trading Systems",
+        color: "from-rose-50 to-pink-100",
+      },
+    ],
+  },
+  {
+    season: "Season 3",
+    title: "Scaling & Funding",
+    mentors: [
+      {
+        name: "Rohit Morning Star",
+        specialty: "Morning Sessions",
+        color: "from-yellow-50 to-amber-100",
+      },
+      {
+        name: "Anand Rajan",
+        specialty: "Scaling Strategies",
+        color: "from-pink-50 to-rose-100",
+      },
+    ],
+  },
+  {
+    season: "Season 4",
+    title: "Discipline & Journaling",
+    mentors: [
+      {
+        name: "Himanshu",
+        specialty: "Discipline",
+        color: "from-rose-50 to-orange-100",
+      },
+      {
+        name: "Rishav",
+        specialty: "Journaling",
+        color: "from-amber-50 to-stone-100",
+      },
+      {
+        name: "Viraj",
+        specialty: "Execution",
+        color: "from-pink-50 to-rose-50",
+      },
+    ],
+  },
+];
   const currentSeason = seasons[activeTab];
 
   return (
